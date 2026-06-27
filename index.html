@@ -1,30 +1,26 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Case 1 진료면담 컨설팅 요약 보고서</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>산부인과 진료면담 컨설팅 보고서 | Case 1</title>
+  <meta name="description" content="산부인과 진료면담 상담 영상을 기반으로 한 인터랙티브 진료 컨설팅 보고서">
   <style>
     :root {
-      --bg: #f4f7fb;
-      --paper: #ffffff;
-      --ink: #17212f;
-      --muted: #607084;
-      --line: #d6dee8;
-      --navy: #123a5f;
-      --blue: #23649b;
-      --teal: #127579;
-      --green: #287a52;
-      --gold: #9b7100;
-      --red: #b44935;
-      --lavender: #6254a3;
-      --soft-blue: #e8f2fb;
-      --soft-teal: #e6f5f5;
-      --soft-green: #e9f6ef;
-      --soft-gold: #fff4d4;
-      --soft-red: #ffe9e4;
-      --soft-lavender: #eeebfb;
-      --shadow: 0 18px 42px rgba(21, 48, 78, 0.12);
+      --blue: #1428a0;
+      --blue-2: #2457ff;
+      --cyan: #00a9e0;
+      --green: #00a676;
+      --orange: #ff9f1c;
+      --red: #de3c4b;
+      --ink: #0e1726;
+      --muted: #5d6b82;
+      --line: #dce3ef;
+      --soft: #f6f8fc;
+      --white: #ffffff;
+      --shadow: 0 18px 48px rgba(14, 23, 38, 0.11);
+      --radius: 8px;
+      --max: 1240px;
     }
 
     * {
@@ -39,1042 +35,1811 @@
       margin: 0;
       color: var(--ink);
       background:
-        linear-gradient(180deg, #ffffff 0, var(--bg) 520px),
-        var(--bg);
-      font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", Arial, sans-serif;
-      font-size: 19px;
-      line-height: 1.65;
-      letter-spacing: 0;
+        linear-gradient(180deg, #f8fbff 0%, #f3f6fb 36%, #ffffff 100%);
+      font-family: "Segoe UI", "Noto Sans KR", "Malgun Gothic", Arial, sans-serif;
+      line-height: 1.58;
     }
 
     a {
-      color: var(--blue);
-      text-decoration-thickness: 2px;
-      text-underline-offset: 4px;
+      color: inherit;
+      text-decoration: none;
     }
 
-    .wrap {
-      width: min(1160px, calc(100% - 48px));
-      margin: 0 auto;
+    button {
+      font: inherit;
     }
 
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 10;
-      border-bottom: 1px solid rgba(214, 222, 232, 0.95);
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(12px);
+      z-index: 40;
+      border-bottom: 1px solid rgba(220, 227, 239, 0.9);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
     }
 
     .topbar-inner {
-      min-height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
+      max-width: var(--max);
+      min-height: 72px;
+      margin: 0 auto;
+      padding: 0 28px;
     }
 
     .brand {
-      font-size: 18px;
-      line-height: 1.25;
-      font-weight: 950;
-      color: var(--navy);
-      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 230px;
     }
 
-    .nav {
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      color: #fff;
+      background: var(--blue);
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 17px;
+    }
+
+    .brand-kicker {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .brand-title {
+      margin-top: 1px;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .nav-actions {
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       justify-content: flex-end;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
-    .nav a {
+    .nav-button,
+    .mode-button,
+    .tab-button,
+    .copy-button,
+    .ghost-button,
+    .back-top {
       display: inline-flex;
       align-items: center;
-      min-height: 36px;
-      padding: 8px 11px;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
       border: 1px solid var(--line);
-      border-radius: 999px;
-      background: #ffffff;
+      border-radius: 8px;
+      padding: 10px 14px;
       color: var(--ink);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 850;
+      background: #fff;
+      cursor: pointer;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .nav-button:hover,
+    .mode-button:hover,
+    .tab-button:hover,
+    .copy-button:hover,
+    .ghost-button:hover,
+    .back-top:hover {
+      transform: translateY(-1px);
+      border-color: rgba(20, 40, 160, 0.45);
+      box-shadow: 0 10px 26px rgba(20, 40, 160, 0.12);
+    }
+
+    .nav-button.primary,
+    .mode-button.is-active,
+    .tab-button.is-active {
+      color: #fff;
+      border-color: var(--blue);
+      background: var(--blue);
     }
 
     .hero {
-      padding: 70px 0 40px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 82% 24%, rgba(0, 169, 224, 0.18), transparent 30%),
+        linear-gradient(135deg, #ffffff 0%, #f4f7ff 54%, #eef4ff 100%);
     }
 
-    .report-label {
-      margin: 0 0 14px;
-      color: var(--teal);
-      font-size: 18px;
-      font-weight: 950;
-      text-transform: uppercase;
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(420px, 0.92fr);
+      gap: 48px;
+      align-items: center;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 72px 28px 54px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--blue);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 4px;
+      background: var(--blue);
+      border-radius: 99px;
     }
 
     h1 {
       margin: 0;
-      color: #101924;
-      font-size: clamp(44px, 6vw, 74px);
-      line-height: 1.12;
-      letter-spacing: 0;
-      max-width: 980px;
+      max-width: 780px;
+      font-size: clamp(40px, 6vw, 76px);
+      line-height: 1.04;
+      font-weight: 850;
     }
 
-    .subtitle {
+    .hero-copy {
+      max-width: 760px;
       margin: 24px 0 0;
-      max-width: 920px;
-      color: var(--muted);
-      font-size: 25px;
+      color: #334155;
+      font-size: 22px;
       line-height: 1.55;
-      font-weight: 720;
     }
 
-    .meta-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 34px;
+    .hero-metadata {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
     }
 
-    .meta {
-      min-height: 112px;
-      padding: 18px 19px;
-      border: 1px solid var(--line);
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 1px solid rgba(20, 40, 160, 0.16);
       border-radius: 8px;
-      background: var(--paper);
-      box-shadow: 0 12px 28px rgba(21, 48, 78, 0.08);
+      color: #1f2f5f;
+      background: rgba(255, 255, 255, 0.74);
+      font-size: 14px;
+      font-weight: 700;
     }
 
-    .meta span {
+    .visual-board {
+      position: relative;
+      min-height: 440px;
+      padding: 26px;
+      border: 1px solid rgba(20, 40, 160, 0.14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: var(--shadow);
+    }
+
+    .board-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .board-title strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    .board-title span {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .score-ring {
+      display: grid;
+      place-items: center;
+      width: 96px;
+      height: 96px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      color: var(--blue);
+      background:
+        radial-gradient(circle at center, #fff 0 57%, transparent 58%),
+        conic-gradient(var(--blue) 0 78%, #e7edf8 78% 100%);
+      font-size: 28px;
+      font-weight: 850;
+    }
+
+    .signal-map {
+      width: 100%;
+      height: auto;
+      min-height: 270px;
       display: block;
     }
 
-    .meta .label {
+    .quick-strip {
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .quick-inner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 28px;
+      overflow-x: auto;
+    }
+
+    .mode-label {
+      flex: 0 0 auto;
       color: var(--muted);
       font-size: 14px;
-      font-weight: 900;
-      text-transform: uppercase;
+      font-weight: 800;
     }
 
-    .meta .value {
-      margin-top: 8px;
-      color: var(--ink);
-      font-size: 22px;
-      line-height: 1.25;
-      font-weight: 950;
+    .layout {
+      display: grid;
+      grid-template-columns: 270px minmax(0, 1fr);
+      gap: 34px;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 34px 28px 76px;
     }
 
-    section {
-      padding: 48px 0;
-      border-top: 1px solid rgba(214, 222, 232, 0.9);
+    .toc {
+      position: sticky;
+      top: 98px;
+      align-self: start;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(14, 23, 38, 0.07);
     }
 
-    section:nth-of-type(even) {
-      background: rgba(255, 255, 255, 0.45);
+    .toc-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 18px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .toc-title {
+      font-size: 16px;
+      font-weight: 850;
+    }
+
+    .toc-badge {
+      min-width: 32px;
+      padding: 3px 8px;
+      border-radius: 99px;
+      color: #fff;
+      background: var(--blue);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .toc-list {
+      display: grid;
+      gap: 4px;
+      padding: 12px;
+    }
+
+    .toc-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 42px;
+      padding: 9px 10px;
+      border-radius: 8px;
+      color: #34425a;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .toc-link span {
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      color: var(--blue);
+      background: #eef3ff;
+      font-size: 12px;
+      font-weight: 850;
+      flex: 0 0 auto;
+    }
+
+    .toc-link.is-active,
+    .toc-link:hover {
+      color: var(--blue);
+      background: #f1f5ff;
+    }
+
+    main {
+      min-width: 0;
+    }
+
+    .section {
+      scroll-margin-top: 110px;
+      padding: 36px 0 46px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section:first-child {
+      padding-top: 4px;
+    }
+
+    .section.is-hidden {
+      display: none;
     }
 
     .section-head {
       display: grid;
-      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
-      gap: 34px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 20px;
       align-items: end;
-      margin-bottom: 28px;
-    }
-
-    h2 {
-      margin: 0;
-      color: var(--navy);
-      font-size: clamp(34px, 4.8vw, 50px);
-      line-height: 1.18;
-      letter-spacing: 0;
+      margin-bottom: 22px;
     }
 
     .section-kicker {
-      margin: 0 0 10px;
-      color: var(--teal);
-      font-size: 16px;
-      font-weight: 950;
-      text-transform: uppercase;
-    }
-
-    .head-note {
-      margin: 0;
-      color: var(--muted);
-      font-size: 21px;
-      line-height: 1.6;
-      font-weight: 700;
-    }
-
-    h3 {
-      margin: 26px 0 12px;
-      color: #1f4d78;
-      font-size: 28px;
-      line-height: 1.25;
-      letter-spacing: 0;
-    }
-
-    h4 {
-      margin: 0 0 10px;
-      color: var(--navy);
-      font-size: 22px;
-      line-height: 1.3;
-    }
-
-    p {
-      margin: 0 0 14px;
-    }
-
-    .lead {
-      max-width: 1020px;
-      margin: 0 0 26px;
-      color: #26384c;
-      font-size: 25px;
-      line-height: 1.62;
-      font-weight: 780;
-    }
-
-    .executive-box {
-      display: grid;
-      grid-template-columns: minmax(260px, 0.42fr) minmax(0, 1fr);
-      gap: 24px;
-      align-items: stretch;
-      margin: 26px 0;
-    }
-
-    .score-card {
-      padding: 28px;
-      border-radius: 8px;
-      background: linear-gradient(145deg, var(--navy), #1d6693);
-      color: #ffffff;
-      box-shadow: var(--shadow);
-    }
-
-    .score-label {
-      font-size: 16px;
-      font-weight: 900;
-      opacity: 0.86;
-    }
-
-    .score-value {
-      margin-top: 12px;
-      font-size: 72px;
-      line-height: 1;
-      font-weight: 950;
-    }
-
-    .score-desc {
-      margin-top: 14px;
-      font-size: 21px;
-      line-height: 1.45;
-      font-weight: 820;
-    }
-
-    .summary-card {
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #ffffff;
-      box-shadow: var(--shadow);
-    }
-
-    .summary-card strong {
-      color: var(--navy);
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin: 24px 0;
-    }
-
-    .card {
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #ffffff;
-      box-shadow: 0 14px 30px rgba(21, 48, 78, 0.08);
-    }
-
-    .card p {
-      color: #344455;
-      font-weight: 680;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      min-height: 32px;
-      padding: 5px 11px;
-      margin-bottom: 14px;
-      border-radius: 999px;
-      font-size: 13px;
-      line-height: 1.1;
-      font-weight: 950;
-      text-transform: uppercase;
-      color: #ffffff;
-      background: var(--blue);
-    }
-
-    .tag.green { background: var(--green); }
-    .tag.gold { background: var(--gold); }
-    .tag.red { background: var(--red); }
-    .tag.teal { background: var(--teal); }
-    .tag.lavender { background: var(--lavender); }
-
-    .direction-table {
-      width: 100%;
-      border-collapse: collapse;
-      overflow: hidden;
-      border-radius: 8px;
-      background: #ffffff;
-      box-shadow: var(--shadow);
-      font-size: 18px;
-    }
-
-    .direction-table th,
-    .direction-table td {
-      padding: 17px 18px;
-      border: 1px solid var(--line);
-      vertical-align: top;
-      text-align: left;
-    }
-
-    .direction-table th {
-      background: #e9f1f8;
-      color: var(--navy);
-      font-size: 17px;
-      font-weight: 950;
-    }
-
-    .direction-table td {
-      color: #273749;
-      font-weight: 650;
-    }
-
-    .priority-high,
-    .priority-mid,
-    .priority-low {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 74px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      font-size: 15px;
-      font-weight: 950;
-    }
-
-    .priority-high {
-      color: #742b21;
-      background: var(--soft-red);
-    }
-
-    .priority-mid {
-      color: #614300;
-      background: var(--soft-gold);
-    }
-
-    .priority-low {
-      color: #174a34;
-      background: var(--soft-green);
-    }
-
-    .flow {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 14px;
-      margin: 26px 0;
-      align-items: stretch;
-    }
-
-    .flow-step {
-      position: relative;
-      min-height: 164px;
-      padding: 21px 18px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #ffffff;
-      box-shadow: 0 12px 26px rgba(21, 48, 78, 0.08);
-    }
-
-    .flow-step:not(:last-child)::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      right: -12px;
-      width: 20px;
-      height: 20px;
-      border-top: 4px solid var(--blue);
-      border-right: 4px solid var(--blue);
-      transform: translateY(-50%) rotate(45deg);
-      background: transparent;
-      z-index: 2;
-    }
-
-    .num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 38px;
-      height: 38px;
-      margin-bottom: 12px;
-      border-radius: 50%;
-      color: #ffffff;
-      background: var(--blue);
-      font-size: 18px;
-      font-weight: 950;
-    }
-
-    .flow-step:nth-child(2) .num { background: var(--teal); }
-    .flow-step:nth-child(3) .num { background: var(--green); }
-    .flow-step:nth-child(4) .num { background: var(--lavender); }
-    .flow-step:nth-child(5) .num { background: var(--red); }
-
-    .flow-title {
-      margin: 0 0 8px;
-      color: var(--ink);
-      font-size: 20px;
-      line-height: 1.25;
-      font-weight: 950;
-    }
-
-    .flow-step p {
-      margin: 0;
-      color: #3c4b5b;
-      font-size: 17px;
-      line-height: 1.45;
-      font-weight: 720;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px;
-    }
-
-    .script-box {
-      padding: 22px 24px;
-      border: 1px solid var(--line);
-      border-left: 10px solid var(--teal);
-      border-radius: 8px;
-      background: #ffffff;
-      box-shadow: 0 12px 28px rgba(21, 48, 78, 0.08);
-    }
-
-    .script-box.gold { border-left-color: var(--gold); }
-    .script-box.red { border-left-color: var(--red); }
-    .script-box.blue { border-left-color: var(--blue); }
-
-    .script-label {
-      display: block;
-      margin-bottom: 10px;
-      color: var(--muted);
+      color: var(--blue);
       font-size: 14px;
-      font-weight: 950;
-      text-transform: uppercase;
-    }
-
-    .script {
-      margin: 0;
-      color: #1c2b3a;
-      font-size: 21px;
-      line-height: 1.62;
-      font-weight: 800;
-    }
-
-    .quote {
-      margin: 24px 0;
-      padding: 28px 30px;
-      border: 1px solid #ead28c;
-      border-radius: 8px;
-      background: var(--soft-gold);
-      color: #302714;
-      font-size: 24px;
-      line-height: 1.65;
       font-weight: 850;
     }
 
-    .direction-section {
-      margin-top: 28px;
-      padding: 28px;
+    h2 {
+      margin: 5px 0 0;
+      font-size: clamp(30px, 3.5vw, 44px);
+      line-height: 1.16;
+      font-weight: 850;
+    }
+
+    .section-lead {
+      max-width: 840px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.65;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .metric-card,
+    .insight-card,
+    .direction-card,
+    .script-card,
+    .routine-card,
+    .timeline-card,
+    .quote-card,
+    .risk-card {
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: #ffffff;
-      box-shadow: 0 12px 28px rgba(21, 48, 78, 0.07);
+      background: #fff;
+      box-shadow: 0 12px 30px rgba(14, 23, 38, 0.06);
     }
 
-    .direction-section h3 {
-      margin-top: 0;
+    .metric-card {
+      min-height: 170px;
+      padding: 24px;
     }
 
-    .compact-list {
+    .metric-number {
+      font-size: 45px;
+      line-height: 1;
+      color: var(--blue);
+      font-weight: 850;
+    }
+
+    .metric-title {
+      margin-top: 14px;
+      font-size: 18px;
+      font-weight: 850;
+    }
+
+    .metric-copy {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .insight-card {
+      display: grid;
+      grid-template-columns: 8px minmax(0, 1fr);
+      overflow: hidden;
+    }
+
+    .insight-card::before {
+      content: "";
+      background: var(--blue);
+    }
+
+    .insight-card.green::before {
+      background: var(--green);
+    }
+
+    .insight-card.orange::before {
+      background: var(--orange);
+    }
+
+    .insight-card.red::before {
+      background: var(--red);
+    }
+
+    .insight-body {
+      padding: 24px;
+    }
+
+    .insight-label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .insight-title {
+      margin-top: 8px;
+      font-size: 22px;
+      line-height: 1.28;
+      font-weight: 850;
+    }
+
+    .insight-copy {
+      margin-top: 10px;
+      color: #46556b;
+      font-size: 17px;
+    }
+
+    .large-diagram {
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 12px 30px rgba(14, 23, 38, 0.06);
+      overflow: hidden;
+    }
+
+    .diagram-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .diagram-header strong {
+      font-size: 22px;
+    }
+
+    .diagram-header span {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .diagram-canvas {
+      padding: 18px;
+      background: linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
+    }
+
+    .diagram-canvas svg {
+      display: block;
+      width: 100%;
+      min-height: 420px;
+    }
+
+    .tabs {
+      margin-top: 22px;
+    }
+
+    .tab-list {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .tab-button {
+      width: 100%;
+      min-height: 58px;
+      font-size: 15px;
+      font-weight: 850;
+      text-align: center;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.is-active {
+      display: block;
+    }
+
+    .direction-card {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 0;
+      overflow: hidden;
+    }
+
+    .direction-main {
+      padding: 32px;
+      background: #fff;
+    }
+
+    .direction-side {
+      padding: 32px;
+      background: #f6f9ff;
+      border-left: 1px solid var(--line);
+    }
+
+    .direction-tag {
+      display: inline-flex;
+      min-height: 30px;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 8px;
+      color: var(--blue);
+      background: #eaf0ff;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    h3 {
+      margin: 14px 0 0;
+      font-size: 28px;
+      line-height: 1.25;
+    }
+
+    .direction-copy {
+      margin: 14px 0 0;
+      color: #45546c;
+      font-size: 18px;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 10px;
+      border: 1px solid #d5def0;
+      border-radius: 8px;
+      color: #2c3b55;
+      background: #fff;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .side-title {
+      margin: 0 0 14px;
+      font-size: 18px;
+      font-weight: 850;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .check-list li {
+      position: relative;
+      padding-left: 26px;
+      color: #2f3f57;
+      font-size: 16px;
+    }
+
+    .check-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.52em;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 0 4px rgba(20, 40, 160, 0.12);
+    }
+
+    .quote-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .quote-card {
+      padding: 26px;
+      min-height: 190px;
+    }
+
+    .quote-card strong {
+      display: block;
+      color: var(--blue);
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .quote-card blockquote {
+      margin: 0;
+      color: #1f2b3f;
+      font-size: 21px;
+      line-height: 1.52;
+      font-weight: 780;
+    }
+
+    .quote-card p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .script-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .script-card {
+      display: grid;
+      grid-template-rows: auto minmax(190px, 1fr) auto;
+      min-height: 350px;
+      padding: 24px;
+    }
+
+    .script-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .script-top strong {
+      font-size: 19px;
+      line-height: 1.3;
+    }
+
+    .script-text {
+      display: block;
+      margin: 0;
+      color: #26364f;
+      font-size: 18px;
+      line-height: 1.68;
+      white-space: pre-line;
+    }
+
+    .copy-button {
+      margin-top: 18px;
+      color: var(--blue);
+      font-weight: 850;
+    }
+
+    .copy-button.is-copied {
+      color: #fff;
+      border-color: var(--green);
+      background: var(--green);
+    }
+
+    .routine-row {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .routine-card {
+      padding: 22px;
+      min-height: 228px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .routine-card::after {
+      content: attr(data-step);
+      position: absolute;
+      right: 16px;
+      bottom: 2px;
+      color: rgba(20, 40, 160, 0.07);
+      font-size: 74px;
+      line-height: 1;
+      font-weight: 850;
+    }
+
+    .routine-icon {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--blue);
+      font-size: 18px;
+      font-weight: 850;
+    }
+
+    .routine-card h3 {
+      margin-top: 18px;
+      font-size: 22px;
+    }
+
+    .routine-card p {
       margin: 10px 0 0;
-      padding-left: 22px;
-    }
-
-    .compact-list li {
-      margin: 8px 0;
-      font-weight: 680;
-      color: #344455;
+      color: var(--muted);
+      font-size: 16px;
     }
 
     .timeline {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-      margin: 24px 0;
+      gap: 12px;
+      margin-top: 22px;
     }
 
-    .time-card {
-      padding: 22px;
+    .timeline-card {
+      display: grid;
+      grid-template-columns: 110px minmax(0, 1fr) 190px;
+      gap: 18px;
+      align-items: center;
+      padding: 20px 22px;
+    }
+
+    .week {
+      color: var(--blue);
+      font-size: 24px;
+      font-weight: 850;
+    }
+
+    .timeline-card strong {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .timeline-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .owner {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--blue);
+      font-size: 14px;
+      font-weight: 850;
+      text-align: center;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 20px;
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: #ffffff;
-      box-shadow: 0 12px 26px rgba(21, 48, 78, 0.08);
+      background: #fff;
     }
 
-    .time {
-      color: var(--teal);
+    table {
+      width: 100%;
+      min-width: 840px;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 18px 18px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
       font-size: 16px;
-      font-weight: 950;
     }
 
-    .time-card h4 {
-      margin-top: 8px;
+    th {
+      color: var(--blue);
+      background: #f3f6ff;
+      font-weight: 850;
     }
 
-    .final-note {
-      padding: 30px;
-      border: 2px solid var(--navy);
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .risk-card {
+      min-height: 190px;
+      padding: 22px;
+    }
+
+    .risk-level {
+      display: inline-flex;
+      min-height: 30px;
+      align-items: center;
+      padding: 4px 10px;
       border-radius: 8px;
-      background: #ffffff;
-      box-shadow: var(--shadow);
+      color: #fff;
+      background: var(--blue);
+      font-size: 13px;
+      font-weight: 850;
     }
 
-    .final-note p {
-      font-size: 23px;
-      line-height: 1.65;
-      font-weight: 800;
+    .risk-level.orange {
+      background: var(--orange);
+      color: #1a1a1a;
     }
 
-    footer {
-      padding: 42px 0 64px;
-      border-top: 1px solid var(--line);
+    .risk-level.green {
+      background: var(--green);
+    }
+
+    .risk-card strong {
+      display: block;
+      margin-top: 14px;
+      font-size: 20px;
+    }
+
+    .risk-card p {
+      margin: 10px 0 0;
       color: var(--muted);
-      font-size: 15px;
+      font-size: 16px;
     }
 
-    @media (max-width: 980px) {
-      .section-head,
-      .executive-box,
-      .two-col {
+    .footer {
+      border-top: 1px solid var(--line);
+      background: #08112b;
+      color: #fff;
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 34px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer strong {
+      font-size: 18px;
+    }
+
+    .footer span {
+      color: #c9d4ee;
+      font-size: 14px;
+    }
+
+    .back-top {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 45;
+      width: 52px;
+      height: 52px;
+      padding: 0;
+      color: #fff;
+      border-color: var(--blue);
+      background: var(--blue);
+      box-shadow: 0 14px 34px rgba(20, 40, 160, 0.25);
+    }
+
+    .mobile-toc {
+      display: none;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-inner,
+      .layout {
         grid-template-columns: 1fr;
       }
 
-      .meta-grid,
-      .card-grid,
-      .timeline {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .visual-board {
+        min-height: 360px;
       }
 
-      .flow {
-        grid-template-columns: 1fr;
-      }
-
-      .flow-step:not(:last-child)::after {
+      .toc {
         display: none;
       }
+
+      .mobile-toc {
+        display: block;
+        position: sticky;
+        top: 72px;
+        z-index: 32;
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(14px);
+      }
+
+      .mobile-toc-inner {
+        display: flex;
+        gap: 8px;
+        padding: 10px 28px;
+        overflow-x: auto;
+      }
+
+      .mobile-toc .toc-link {
+        flex: 0 0 auto;
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .tab-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .routine-row,
+      .risk-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
-    @media (max-width: 640px) {
-      body {
-        font-size: 17px;
-      }
-
-      .wrap {
-        width: min(100% - 28px, 1160px);
-      }
-
-      .topbar {
-        position: static;
-      }
-
+    @media (max-width: 760px) {
       .topbar-inner {
         align-items: flex-start;
         flex-direction: column;
-        padding: 14px 0;
+        min-height: 0;
+        padding: 14px 18px;
       }
 
-      .nav {
-        justify-content: flex-start;
-      }
-
-      .meta-grid,
-      .card-grid,
-      .timeline {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 40px;
-      }
-
-      .subtitle,
-      .lead {
-        font-size: 21px;
-      }
-
-      .direction-table {
-        font-size: 16px;
-      }
-
-      .direction-table th,
-      .direction-table td {
-        padding: 12px;
-      }
-    }
-
-    @media print {
-      body {
-        background: #ffffff;
-        font-size: 12pt;
-      }
-
-      .topbar {
-        display: none;
-      }
-
-      .wrap {
+      .brand {
         width: 100%;
       }
 
-      section,
-      .hero {
-        padding: 20px 0;
-        break-inside: avoid;
+      .nav-actions {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 2px;
       }
 
-      .card,
-      .summary-card,
-      .score-card,
-      .script-box,
-      .direction-section,
-      .direction-table,
-      .final-note {
-        box-shadow: none;
+      .hero-inner,
+      .layout {
+        padding-left: 18px;
+        padding-right: 18px;
       }
 
-      a {
-        color: #000000;
+      .hero-inner {
+        padding-top: 48px;
+      }
+
+      .hero-copy {
+        font-size: 18px;
+      }
+
+      .visual-board {
+        padding: 18px;
+        min-height: 0;
+      }
+
+      .score-ring {
+        width: 78px;
+        height: 78px;
+        font-size: 23px;
+      }
+
+      .quick-inner,
+      .mobile-toc-inner {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .section-head,
+      .direction-card,
+      .timeline-card {
+        grid-template-columns: 1fr;
+      }
+
+      .grid.three,
+      .grid.two,
+      .quote-grid,
+      .script-grid,
+      .routine-row,
+      .risk-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tab-list {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .direction-side {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .timeline-card {
+        align-items: start;
+      }
+
+      .owner {
+        justify-content: flex-start;
+      }
+
+      .diagram-canvas svg {
+        min-height: 320px;
       }
     }
   </style>
 </head>
 <body>
-  <nav class="topbar" aria-label="보고서 내비게이션">
-    <div class="wrap topbar-inner">
-      <div class="brand">Severance 2026 | Consultation Brief</div>
-      <div class="nav">
-        <a href="#summary">핵심요약</a>
-        <a href="#directions">방향분석</a>
-        <a href="#priority">우선순위</a>
-        <a href="#scripts">스크립트</a>
-        <a href="#plan">실행계획</a>
-        <a href="#conclusion">결론</a>
-      </div>
-    </div>
-  </nav>
-
-  <header class="hero">
-    <div class="wrap">
-      <p class="report-label">Professional Summary Report</p>
-      <h1>Case 1 산부인과 진료면담 컨설팅 요약 보고서</h1>
-      <p class="subtitle">환자 불안 완화, 검사 결과 설명, 공동의사결정, teach-back, 안전망 안내를 중심으로 정리한 다중 방향 컨설팅 브리프</p>
-      <div class="meta-grid" aria-label="보고서 개요">
-        <div class="meta">
-          <span class="label">대상</span>
-          <span class="value">산부인과 외래 진료면담</span>
-        </div>
-        <div class="meta">
-          <span class="label">의료진</span>
-          <span class="value">백진경 교수</span>
-        </div>
-        <div class="meta">
-          <span class="label">분석 자료</span>
-          <span class="value">영상 전사 텍스트</span>
-        </div>
-        <div class="meta">
-          <span class="label">핵심 권고</span>
-          <span class="value">5단계 상담 루틴</span>
-        </div>
-      </div>
+  <header class="topbar" id="top">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="보고서 처음으로 이동">
+        <span class="brand-mark">C1</span>
+        <span>
+          <span class="brand-kicker">MEDICAL INTERVIEW CONSULTING</span>
+          <span class="brand-title">Case 1 산부인과 진료면담</span>
+        </span>
+      </a>
+      <nav class="nav-actions" aria-label="빠른 이동">
+        <button class="nav-button primary" data-jump="#executive">핵심</button>
+        <button class="nav-button" data-jump="#directions">방향</button>
+        <button class="nav-button" data-jump="#scripts">스크립트</button>
+        <button class="nav-button" data-jump="#roadmap">실행</button>
+      </nav>
     </div>
   </header>
 
-  <main>
-    <section id="summary">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Executive Summary</p>
-            <h2>1. 핵심 결론</h2>
-          </div>
-          <p class="head-note">이 진료의 기본기는 안정적입니다. 개선의 핵심은 설명을 더 많이 하는 것이 아니라, 환자가 따라올 수 있는 순서로 재배치하는 것입니다.</p>
-        </div>
-
-        <div class="executive-box">
-          <div class="score-card">
-            <div class="score-label">Overall Communication Readiness</div>
-            <div class="score-value">3.5</div>
-            <div class="score-desc">임상 설명은 안정적, 환자중심 확인 루틴은 보완 필요</div>
-          </div>
-          <div class="summary-card">
-            <p><strong>종합 평가:</strong> 짧은 시간 안에 병력, 과거 영상, 검사 의미, 추적 계획을 연결하는 능력은 좋습니다. 종양표지자 수치만으로 악성을 단정하지 않고 영상과 함께 판단해야 한다고 설명한 점도 강점입니다.</p>
-            <p><strong>핵심 보완:</strong> 환자의 불안은 상담 말미에야 다루어졌고, 설명 후 환자가 계획을 자기 말로 되짚는 과정과 조기 연락 기준 안내가 부족했습니다.</p>
-          </div>
-        </div>
-
-        <div class="card-grid">
-          <article class="card">
-            <span class="tag green">유지할 강점</span>
-            <h3>임상정보 구조화</h3>
-            <p>초음파 경험, 생리 양과 주기 변화, 과거 MRI, 종양표지자 검사 경험을 빠르게 확인했습니다.</p>
-          </article>
-          <article class="card">
-            <span class="tag red">최우선 보완</span>
-            <h3>초반 불안 확인</h3>
-            <p>환자가 가장 걱정하는 것이 암 가능성인지, 수술 가능성인지, 기다림인지 먼저 확인해야 합니다.</p>
-          </article>
-          <article class="card">
-            <span class="tag blue">핵심 실행</span>
-            <h3>Teach-back</h3>
-            <p>“궁금하신 거 있으세요?”에 더해 환자가 오늘 계획을 자기 말로 정리하게 해야 합니다.</p>
-          </article>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">Samsung-inspired Consulting Report</div>
+        <h1 id="hero-title">환자 불안을 신뢰로 전환하는 진료면담 리디자인</h1>
+        <p class="hero-copy">
+          산부인과 상담 영상의 텍스트 자료를 기반으로, 검사 결과 설명과 정서적 안심,
+          추적 계획 안내를 하나의 진료 경험으로 묶은 인터랙티브 컨설팅 보고서입니다.
+        </p>
+        <div class="hero-metadata" aria-label="보고서 메타 정보">
+          <span class="meta-chip">대상: 산부인과 외래 면담</span>
+          <span class="meta-chip">핵심 상황: 난소낭종 및 종양표지자 불안</span>
+          <span class="meta-chip">권고 초점: 3개월 추적검사 설명력 강화</span>
         </div>
       </div>
-    </section>
 
-    <section>
-      <div class="wrap">
+      <aside class="visual-board" aria-label="진료면담 핵심 시그널">
+        <div class="board-title">
+          <span>
+            <strong>Consultation Signal Board</strong>
+            <span>설명력, 공감, 행동계획의 균형 진단</span>
+          </span>
+          <span class="score-ring" aria-label="종합 점수 78점">78</span>
+        </div>
+        <svg class="signal-map" viewBox="0 0 620 380" role="img" aria-label="진료면담 개선 구조 다이어그램">
+          <defs>
+            <linearGradient id="gBlue" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#1428a0"/>
+              <stop offset="100%" stop-color="#00a9e0"/>
+            </linearGradient>
+            <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#1428a0" flood-opacity="0.16"/>
+            </filter>
+          </defs>
+          <rect x="18" y="28" width="584" height="308" rx="8" fill="#f7faff" stroke="#dce3ef"/>
+          <path d="M105 285 C190 150, 262 230, 330 146 S472 94, 532 210" fill="none" stroke="#1428a0" stroke-width="8" stroke-linecap="round"/>
+          <path d="M105 285 C190 150, 262 230, 330 146 S472 94, 532 210" fill="none" stroke="#00a9e0" stroke-width="3" stroke-linecap="round" opacity="0.78"/>
+          <g filter="url(#softShadow)">
+            <circle cx="105" cy="285" r="42" fill="#fff" stroke="#1428a0" stroke-width="4"/>
+            <circle cx="330" cy="146" r="52" fill="url(#gBlue)"/>
+            <circle cx="532" cy="210" r="42" fill="#fff" stroke="#00a676" stroke-width="4"/>
+          </g>
+          <text x="105" y="281" text-anchor="middle" font-size="18" font-weight="800" fill="#1428a0">불안</text>
+          <text x="105" y="305" text-anchor="middle" font-size="13" font-weight="700" fill="#5d6b82">Cancer Fear</text>
+          <text x="330" y="139" text-anchor="middle" font-size="19" font-weight="850" fill="#fff">설명</text>
+          <text x="330" y="165" text-anchor="middle" font-size="13" font-weight="750" fill="#dfe9ff">Evidence Talk</text>
+          <text x="532" y="206" text-anchor="middle" font-size="18" font-weight="800" fill="#00a676">계획</text>
+          <text x="532" y="230" text-anchor="middle" font-size="13" font-weight="700" fill="#5d6b82">3M Follow-up</text>
+          <g fill="#334155" font-size="15" font-weight="750">
+            <text x="74" y="82">진단명보다 위험도 구조 설명</text>
+            <text x="286" y="64">종양표지자 한계 명확화</text>
+            <text x="414" y="304">재검 시점과 행동 기준 고정</text>
+          </g>
+          <g stroke="#d2daea" stroke-dasharray="5 7">
+            <line x1="92" y1="104" x2="92" y2="242"/>
+            <line x1="330" y1="78" x2="330" y2="94"/>
+            <line x1="504" y1="264" x2="504" y2="288"/>
+          </g>
+        </svg>
+      </aside>
+    </div>
+  </section>
+
+  <section class="quick-strip" aria-label="보고서 보기 방식">
+    <div class="quick-inner">
+      <span class="mode-label">VIEW MODE</span>
+      <button class="mode-button is-active" data-mode="all">전체 보기</button>
+      <button class="mode-button" data-mode="summary">핵심만</button>
+      <button class="mode-button" data-mode="direction">방향 중심</button>
+      <button class="mode-button" data-mode="script">멘트 중심</button>
+      <button class="mode-button" data-mode="action">실행 중심</button>
+    </div>
+  </section>
+
+  <nav class="mobile-toc" aria-label="모바일 목차">
+    <div class="mobile-toc-inner">
+      <a class="toc-link" href="#executive"><span>01</span>핵심</a>
+      <a class="toc-link" href="#journey"><span>02</span>여정</a>
+      <a class="toc-link" href="#directions"><span>03</span>방향</a>
+      <a class="toc-link" href="#scripts"><span>04</span>멘트</a>
+      <a class="toc-link" href="#roadmap"><span>05</span>실행</a>
+      <a class="toc-link" href="#governance"><span>06</span>관리</a>
+    </div>
+  </nav>
+
+  <div class="layout">
+    <aside class="toc" aria-label="보고서 목차">
+      <div class="toc-head">
+        <div class="toc-title">Contents</div>
+        <div class="toc-badge">6</div>
+      </div>
+      <div class="toc-list">
+        <a class="toc-link is-active" href="#executive"><span>01</span>Executive View</a>
+        <a class="toc-link" href="#journey"><span>02</span>Patient Journey</a>
+        <a class="toc-link" href="#directions"><span>03</span>Consulting Directions</a>
+        <a class="toc-link" href="#scripts"><span>04</span>Talk Scripts</a>
+        <a class="toc-link" href="#roadmap"><span>05</span>30-Day Roadmap</a>
+        <a class="toc-link" href="#governance"><span>06</span>Quality Metrics</a>
+      </div>
+    </aside>
+
+    <main>
+      <section class="section" id="executive" data-group="summary">
         <div class="section-head">
           <div>
-            <p class="section-kicker">Case Flow</p>
-            <h2>2. 진료 흐름 요약</h2>
+            <div class="section-kicker">01 EXECUTIVE VIEW</div>
+            <h2>잘한 점은 유지하고, 불안 해소의 구조를 더 선명하게 만듭니다.</h2>
+            <p class="section-lead">
+              본 면담은 의학적 판단의 방향이 안정적이고 과잉진료를 피하는 설명이 강점입니다.
+              개선의 핵심은 환자가 “왜 지금 수술이 아닌 추적검사인지”를 한 문장으로 기억하도록 설계하는 것입니다.
+            </p>
           </div>
-          <p class="head-note">상담은 자료 확인과 문진에서 시작해 검사 의미 설명, 3개월 추적 계획, 질문 확인으로 마무리되었습니다.</p>
+          <button class="ghost-button" data-jump="#scripts">추천 멘트 보기</button>
         </div>
+
+        <div class="grid three">
+          <article class="metric-card">
+            <div class="metric-number">78</div>
+            <div class="metric-title">종합 면담 완성도</div>
+            <div class="metric-copy">의학적 설명과 정서적 반응은 우수하나, 환자 이해 확인 루틴이 부족합니다.</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-number">A-</div>
+            <div class="metric-title">임상 판단 전달력</div>
+            <div class="metric-copy">MRI, 초음파, 종양표지자 해석을 균형 있게 연결했습니다.</div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-number">3M</div>
+            <div class="metric-title">핵심 행동 계획</div>
+            <div class="metric-copy">3개월 뒤 초음파와 종양표지자 재검을 명확한 실행 단위로 고정해야 합니다.</div>
+          </article>
+        </div>
+
+        <div class="grid three" style="margin-top:16px">
+          <article class="insight-card green">
+            <div class="insight-body">
+              <div class="insight-label">STRENGTH</div>
+              <div class="insight-title">“암이라고 단정할 수 없다”는 균형 설명</div>
+              <div class="insight-copy">환자의 공포를 과장하지 않으면서 검사 해석의 한계를 함께 설명했습니다.</div>
+            </div>
+          </article>
+          <article class="insight-card orange">
+            <div class="insight-body">
+              <div class="insight-label">GAP</div>
+              <div class="insight-title">안심 근거가 흩어져 있어 기억 부담이 큼</div>
+              <div class="insight-copy">양성 가능성, 생리 영향, 기능성 낭종, 좌우 위치 변화를 하나의 구조로 묶어야 합니다.</div>
+            </div>
+          </article>
+          <article class="insight-card">
+            <div class="insight-body">
+              <div class="insight-label">PRIORITY</div>
+              <div class="insight-title">Teach-back으로 이해 확인</div>
+              <div class="insight-copy">마지막 30초에 환자가 계획을 자기 말로 말하게 하면 순응도와 안심감이 올라갑니다.</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="journey" data-group="summary">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">02 PATIENT JOURNEY</div>
+            <h2>환자는 “검사 수치”가 아니라 “암 가능성”을 듣고 있습니다.</h2>
+            <p class="section-lead">
+              상담의 실제 흐름은 정보 확인, 검사 해석, 추적 계획, 정서적 안심으로 진행됩니다.
+              환자 경험 관점에서는 초반 공포 명명과 후반 행동 기준이 더 강해질수록 만족도가 올라갑니다.
+            </p>
+          </div>
+          <button class="ghost-button" data-jump="#directions">방향 분석 보기</button>
+        </div>
+
+        <div class="large-diagram">
+          <div class="diagram-header">
+            <strong>진료면담 경험 지도</strong>
+            <span>불안에서 추적 계획까지의 전환 구조</span>
+          </div>
+          <div class="diagram-canvas">
+            <svg viewBox="0 0 1120 460" role="img" aria-label="진료면담 경험 지도">
+              <defs>
+                <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+                  <path d="M0,0 L12,6 L0,12 Z" fill="#1428a0"/>
+                </marker>
+              </defs>
+              <rect x="24" y="38" width="1072" height="360" rx="8" fill="#fff" stroke="#dce3ef"/>
+              <line x1="130" y1="218" x2="988" y2="218" stroke="#1428a0" stroke-width="5" marker-end="url(#arrow)"/>
+              <g>
+                <circle cx="150" cy="218" r="54" fill="#eaf0ff" stroke="#1428a0" stroke-width="4"/>
+                <text x="150" y="212" text-anchor="middle" font-size="20" font-weight="850" fill="#1428a0">불안</text>
+                <text x="150" y="239" text-anchor="middle" font-size="14" font-weight="750" fill="#5d6b82">암 걱정</text>
+                <text x="150" y="330" text-anchor="middle" font-size="17" font-weight="750" fill="#334155">“수치가 높다”</text>
+              </g>
+              <g>
+                <circle cx="350" cy="218" r="54" fill="#fff8e8" stroke="#ff9f1c" stroke-width="4"/>
+                <text x="350" y="212" text-anchor="middle" font-size="20" font-weight="850" fill="#9b5d00">해석</text>
+                <text x="350" y="239" text-anchor="middle" font-size="14" font-weight="750" fill="#5d6b82">검사 한계</text>
+                <text x="350" y="330" text-anchor="middle" font-size="17" font-weight="750" fill="#334155">MRI와 초음파 맥락화</text>
+              </g>
+              <g>
+                <circle cx="560" cy="218" r="64" fill="#1428a0"/>
+                <text x="560" y="212" text-anchor="middle" font-size="22" font-weight="850" fill="#fff">안심</text>
+                <text x="560" y="240" text-anchor="middle" font-size="14" font-weight="750" fill="#dfe9ff">근거 기반</text>
+                <text x="560" y="330" text-anchor="middle" font-size="17" font-weight="750" fill="#334155">“지금은 추적이 합리적”</text>
+              </g>
+              <g>
+                <circle cx="780" cy="218" r="54" fill="#e9fbf4" stroke="#00a676" stroke-width="4"/>
+                <text x="780" y="212" text-anchor="middle" font-size="20" font-weight="850" fill="#007a57">계획</text>
+                <text x="780" y="239" text-anchor="middle" font-size="14" font-weight="750" fill="#5d6b82">3개월</text>
+                <text x="780" y="330" text-anchor="middle" font-size="17" font-weight="750" fill="#334155">초음파와 표지자 재검</text>
+              </g>
+              <g>
+                <circle cx="980" cy="218" r="54" fill="#eef3ff" stroke="#2457ff" stroke-width="4"/>
+                <text x="980" y="212" text-anchor="middle" font-size="20" font-weight="850" fill="#2457ff">확인</text>
+                <text x="980" y="239" text-anchor="middle" font-size="14" font-weight="750" fill="#5d6b82">Teach-back</text>
+                <text x="980" y="330" text-anchor="middle" font-size="17" font-weight="750" fill="#334155">환자 언어로 재진술</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="directions" data-group="direction">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">03 CONSULTING DIRECTIONS</div>
+            <h2>컨설팅은 여섯 가지 방향으로 나눠 적용할 수 있습니다.</h2>
+            <p class="section-lead">
+              동일한 진료 텍스트라도 컨설팅 목적에 따라 다른 개선 포인트가 보입니다.
+              아래 탭을 눌러 환자 불안, 검사 설명, 공동의사결정, 이해 확인, 클로징, 비언어 신호를 각각 확인하세요.
+            </p>
+          </div>
+          <button class="ghost-button" data-jump="#roadmap">실행계획 보기</button>
+        </div>
+
+        <div class="tabs" data-tabs>
+          <div class="tab-list" role="tablist" aria-label="컨설팅 방향 탭">
+            <button class="tab-button is-active" role="tab" aria-selected="true" data-tab="anxiety">불안 신뢰</button>
+            <button class="tab-button" role="tab" aria-selected="false" data-tab="explain">검사 설명</button>
+            <button class="tab-button" role="tab" aria-selected="false" data-tab="decision">공동 결정</button>
+            <button class="tab-button" role="tab" aria-selected="false" data-tab="teachback">이해 확인</button>
+            <button class="tab-button" role="tab" aria-selected="false" data-tab="closing">클로징</button>
+            <button class="tab-button" role="tab" aria-selected="false" data-tab="nonverbal">비언어</button>
+          </div>
+
+          <article class="tab-panel is-active" role="tabpanel" data-panel="anxiety">
+            <div class="direction-card">
+              <div class="direction-main">
+                <span class="direction-tag">Direction 01</span>
+                <h3>환자의 암 공포를 먼저 이름 붙인 뒤 근거로 낮춥니다.</h3>
+                <p class="direction-copy">
+                  “수치가 높다”는 말은 환자에게 곧바로 “암일 수 있다”로 번역됩니다.
+                  의사는 후반부에 공감 표현을 잘 했지만, 초반에 불안의 이름을 먼저 잡으면 설명 전체의 수용성이 높아집니다.
+                </p>
+                <div class="pill-list">
+                  <span class="pill">초반 공감</span>
+                  <span class="pill">위험도 언어</span>
+                  <span class="pill">안심 근거</span>
+                </div>
+              </div>
+              <div class="direction-side">
+                <div class="side-title">적용 포인트</div>
+                <ul class="check-list">
+                  <li>“암 걱정이 가장 크셨을 것 같습니다”로 핵심 감정을 먼저 반영합니다.</li>
+                  <li>양성 가능성의 근거를 MRI, 크기 변화, 생리주기 영향으로 묶어 설명합니다.</li>
+                  <li>안심을 단정이 아니라 “현재 정보상 가능성이 낮다”는 확률 언어로 전달합니다.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="tab-panel" role="tabpanel" data-panel="explain">
+            <div class="direction-card">
+              <div class="direction-main">
+                <span class="direction-tag">Direction 02</span>
+                <h3>검사 결과를 ‘수치’가 아니라 ‘판단 근거 묶음’으로 보여줍니다.</h3>
+                <p class="direction-copy">
+                  종양표지자는 단독 진단 도구가 아니며 생리, 염증, 양성 질환에서도 상승할 수 있습니다.
+                  이 메시지를 반복하되 환자가 기억할 수 있게 3근거 구조로 고정하는 것이 좋습니다.
+                </p>
+                <div class="pill-list">
+                  <span class="pill">MRI</span>
+                  <span class="pill">초음파</span>
+                  <span class="pill">종양표지자</span>
+                </div>
+              </div>
+              <div class="direction-side">
+                <div class="side-title">설명 프레임</div>
+                <ul class="check-list">
+                  <li>“영상 소견, 혈액수치, 시간 변화” 세 축으로 설명합니다.</li>
+                  <li>검사 한계를 말한 뒤 바로 다음 행동 계획으로 연결합니다.</li>
+                  <li>의학용어 뒤에는 짧은 생활 언어를 붙입니다.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="tab-panel" role="tabpanel" data-panel="decision">
+            <div class="direction-card">
+              <div class="direction-main">
+                <span class="direction-tag">Direction 03</span>
+                <h3>“수술하지 않음”을 방치가 아니라 적극적 추적으로 재정의합니다.</h3>
+                <p class="direction-copy">
+                  환자는 수술을 하지 않는다는 말에서 놓치는 느낌을 받을 수 있습니다.
+                  따라서 추적 관찰은 아무것도 하지 않는 선택이 아니라 불필요한 수술을 피하면서 변화를 확인하는 전략임을 강조해야 합니다.
+                </p>
+                <div class="pill-list">
+                  <span class="pill">선택지 비교</span>
+                  <span class="pill">위험 대비</span>
+                  <span class="pill">환자 선호</span>
+                </div>
+              </div>
+              <div class="direction-side">
+                <div class="side-title">적용 포인트</div>
+                <ul class="check-list">
+                  <li>수술, 즉시 정밀검사, 추적검사의 장단점을 짧게 비교합니다.</li>
+                  <li>환자가 가장 걱정하는 선택지의 이유를 확인합니다.</li>
+                  <li>재검 전 악화 신호가 있으면 언제 연락해야 하는지 말합니다.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="tab-panel" role="tabpanel" data-panel="teachback">
+            <div class="direction-card">
+              <div class="direction-main">
+                <span class="direction-tag">Direction 04</span>
+                <h3>마지막 30초에 이해 확인 루틴을 넣습니다.</h3>
+                <p class="direction-copy">
+                  현재 면담은 의사가 충분히 설명하지만 환자가 이해했는지 확인하는 장면은 약합니다.
+                  Teach-back은 환자를 시험하는 질문이 아니라 의료진 설명이 잘 전달됐는지 확인하는 안전장치입니다.
+                </p>
+                <div class="pill-list">
+                  <span class="pill">요약</span>
+                  <span class="pill">재진술</span>
+                  <span class="pill">오해 교정</span>
+                </div>
+              </div>
+              <div class="direction-side">
+                <div class="side-title">적용 포인트</div>
+                <ul class="check-list">
+                  <li>“제가 설명을 잘 드렸는지 확인하려고요”로 질문 부담을 낮춥니다.</li>
+                  <li>환자가 말한 계획 중 빠진 부분만 부드럽게 보완합니다.</li>
+                  <li>진료 후 기억할 문장을 하나로 압축해 줍니다.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="tab-panel" role="tabpanel" data-panel="closing">
+            <div class="direction-card">
+              <div class="direction-main">
+                <span class="direction-tag">Direction 05</span>
+                <h3>클로징은 질문 확인보다 행동 기준 고정이 먼저입니다.</h3>
+                <p class="direction-copy">
+                  “궁금하신 거 있으실까요?”는 좋은 마무리지만, 환자가 무엇을 질문해야 할지 모를 수 있습니다.
+                  닫기 전에 오늘의 결론, 다음 검사, 연락 기준을 20초 안에 정리하는 루틴이 필요합니다.
+                </p>
+                <div class="pill-list">
+                  <span class="pill">오늘 결론</span>
+                  <span class="pill">다음 일정</span>
+                  <span class="pill">연락 기준</span>
+                </div>
+              </div>
+              <div class="direction-side">
+                <div class="side-title">적용 포인트</div>
+                <ul class="check-list">
+                  <li>“오늘 결론은 두 가지입니다”처럼 개수를 먼저 말합니다.</li>
+                  <li>환자가 집에 가서 가족에게 설명할 문장을 제공합니다.</li>
+                  <li>복통, 출혈, 급격한 증상 변화 등 병원 연락 기준을 명시합니다.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="tab-panel" role="tabpanel" data-panel="nonverbal">
+            <div class="direction-card">
+              <div class="direction-main">
+                <span class="direction-tag">Direction 06</span>
+                <h3>모니터 중심 설명을 환자 중심 삼각 구도로 전환합니다.</h3>
+                <p class="direction-copy">
+                  검사 결과를 보며 설명하는 장면은 신뢰에 도움이 됩니다.
+                  다만 환자의 불안이 높은 순간에는 모니터, 의사, 환자가 한 화면에 들어오는 삼각 구도를 만들고 눈맞춤을 회복해야 합니다.
+                </p>
+                <div class="pill-list">
+                  <span class="pill">시선 전환</span>
+                  <span class="pill">손짓 안내</span>
+                  <span class="pill">정서적 멈춤</span>
+                </div>
+              </div>
+              <div class="direction-side">
+                <div class="side-title">적용 포인트</div>
+                <ul class="check-list">
+                  <li>수치 설명 후 2초 멈추고 환자 얼굴을 확인합니다.</li>
+                  <li>핵심 결론은 모니터가 아니라 환자를 보며 말합니다.</li>
+                  <li>공감 문장은 낮은 속도와 낮은 톤으로 전달합니다.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="scripts" data-group="script">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">04 TALK SCRIPTS</div>
+            <h2>진료실에서 바로 쓸 수 있는 핵심 멘트입니다.</h2>
+            <p class="section-lead">
+              말투는 단정적 안심보다 근거 있는 안심에 맞춥니다.
+              각 카드의 복사 버튼을 눌러 교육자료나 체크리스트에 바로 옮길 수 있습니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="script-grid">
+          <article class="script-card">
+            <div class="script-top">
+              <strong>초반 불안 반영</strong>
+              <span class="direction-tag">Opening</span>
+            </div>
+            <p class="script-text">“종양표지자라는 말을 들으면 암부터 걱정되실 수 있어요. 오늘은 그 가능성을 어떤 근거로 낮게 보는지, 그리고 왜 3개월 뒤 다시 확인하는지가 핵심입니다.”</p>
+            <button class="copy-button" data-copy>복사</button>
+          </article>
+
+          <article class="script-card">
+            <div class="script-top">
+              <strong>검사 한계 설명</strong>
+              <span class="direction-tag">Evidence</span>
+            </div>
+            <p class="script-text">“이 수치 하나만으로 암이라고 판단하지는 않습니다. 생리 시기나 염증, 양성 낭종에서도 올라갈 수 있어서 영상 소견과 시간 변화를 같이 봐야 합니다.”</p>
+            <button class="copy-button" data-copy>복사</button>
+          </article>
+
+          <article class="script-card">
+            <div class="script-top">
+              <strong>추적검사 의미 부여</strong>
+              <span class="direction-tag">Plan</span>
+            </div>
+            <p class="script-text">“지금 수술을 바로 권하지 않는 이유는 놓치려는 게 아니라, 불필요한 수술을 피하면서 실제로 없어지는 낭종인지 확인하는 것이 더 안전한 순서이기 때문입니다.”</p>
+            <button class="copy-button" data-copy>복사</button>
+          </article>
+
+          <article class="script-card">
+            <div class="script-top">
+              <strong>환자 선택감 부여</strong>
+              <span class="direction-tag">Decision</span>
+            </div>
+            <p class="script-text">“제 권고는 3개월 뒤 초음파와 피검사를 같이 보는 것입니다. 다만 그 사이에 통증이나 출혈 변화가 뚜렷하면 기다리지 않고 먼저 오시는 기준으로 잡겠습니다.”</p>
+            <button class="copy-button" data-copy>복사</button>
+          </article>
+
+          <article class="script-card">
+            <div class="script-top">
+              <strong>Teach-back</strong>
+              <span class="direction-tag">Check</span>
+            </div>
+            <p class="script-text">“제가 설명을 잘 드렸는지 확인하려고요. 오늘 결론과 다음 검사 계획을 선생님 말로 한 번만 정리해 주실 수 있을까요?”</p>
+            <button class="copy-button" data-copy>복사</button>
+          </article>
+
+          <article class="script-card">
+            <div class="script-top">
+              <strong>마무리 요약</strong>
+              <span class="direction-tag">Closing</span>
+            </div>
+            <p class="script-text">“오늘 결론은 암으로 단정할 상황은 아니고, 기능성 낭종 가능성을 보며 3개월 뒤 다시 확인하자는 것입니다. 불안하셨을 텐데, 기준을 정해서 같이 보겠습니다.”</p>
+            <button class="copy-button" data-copy>복사</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="roadmap" data-group="action">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">05 30-DAY ROADMAP</div>
+            <h2>교육은 짧게, 현장 적용은 반복 가능하게 설계합니다.</h2>
+            <p class="section-lead">
+              컨설팅은 한 번의 피드백보다 반복 가능한 루틴이 중요합니다.
+              30일 안에 진료실에서 체감되는 변화를 만들기 위해 5단계 운영체계로 제안합니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="routine-row">
+          <article class="routine-card" data-step="1">
+            <div class="routine-icon">01</div>
+            <h3>공포 명명</h3>
+            <p>첫 20초 안에 환자의 암 걱정을 직접 언급하고 감정의 방향을 잡습니다.</p>
+          </article>
+          <article class="routine-card" data-step="2">
+            <div class="routine-icon">02</div>
+            <h3>근거 묶음</h3>
+            <p>MRI, 초음파, 종양표지자를 세 개의 판단 근거로 정리합니다.</p>
+          </article>
+          <article class="routine-card" data-step="3">
+            <div class="routine-icon">03</div>
+            <h3>선택지 비교</h3>
+            <p>수술하지 않는 이유를 적극적 추적 전략으로 설명합니다.</p>
+          </article>
+          <article class="routine-card" data-step="4">
+            <div class="routine-icon">04</div>
+            <h3>이해 확인</h3>
+            <p>환자가 오늘 결론과 다음 계획을 자기 언어로 말하게 합니다.</p>
+          </article>
+          <article class="routine-card" data-step="5">
+            <div class="routine-icon">05</div>
+            <h3>행동 기준</h3>
+            <p>3개월 재검과 즉시 연락해야 할 증상 기준을 함께 고정합니다.</p>
+          </article>
+        </div>
+
         <div class="timeline">
-          <div class="time-card">
-            <div class="time">00:00-01:52</div>
-            <h4>도입·자료 확인·문진</h4>
-            <p>초음파 경험, 생리통, 생리 양 변화, 검사 경험을 확인했습니다.</p>
-          </div>
-          <div class="time-card">
-            <div class="time">01:52-02:31</div>
-            <h4>검사 계기·과거 MRI</h4>
-            <p>검사를 받게 된 이유와 과거 MRI 소견을 확인했습니다.</p>
-          </div>
-          <div class="time-card">
-            <div class="time">02:31-04:22</div>
-            <h4>검사 결과 설명</h4>
-            <p>양성 가능성, 생리 주기 관련 혹, 종양표지자 해석 한계를 설명했습니다.</p>
-          </div>
-          <div class="time-card">
-            <div class="time">04:22-04:41</div>
-            <h4>마무리</h4>
-            <p>질문 여부 확인과 공감 표현 후 3개월 뒤 초음파 계획을 반복했습니다.</p>
-          </div>
+          <article class="timeline-card">
+            <div class="week">W1</div>
+            <div>
+              <strong>핵심 멘트 6개 표준화</strong>
+              <p>진료 유형별 초반 공감, 검사 한계, 추적검사 의미, 마무리 문장을 카드화합니다.</p>
+            </div>
+            <div class="owner">컨설턴트 + 의료진</div>
+          </article>
+          <article class="timeline-card">
+            <div class="week">W2</div>
+            <div>
+              <strong>진료실 3분 리허설</strong>
+              <p>실제 결과지를 보며 모니터 설명 후 환자 눈맞춤으로 결론을 말하는 루틴을 연습합니다.</p>
+            </div>
+            <div class="owner">의료진</div>
+          </article>
+          <article class="timeline-card">
+            <div class="week">W3</div>
+            <div>
+              <strong>Teach-back 적용률 측정</strong>
+              <p>마지막 30초 이해 확인 질문을 기록하고 환자 질문 양상의 변화를 확인합니다.</p>
+            </div>
+            <div class="owner">외래 운영팀</div>
+          </article>
+          <article class="timeline-card">
+            <div class="week">W4</div>
+            <div>
+              <strong>피드백 리뷰와 문장 조정</strong>
+              <p>환자 반응, 진료 시간, 재문의 빈도를 보고 멘트 길이와 순서를 다듬습니다.</p>
+            </div>
+            <div class="owner">컨설턴트</div>
+          </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="directions">
-      <div class="wrap">
+      <section class="section" id="governance" data-group="action">
         <div class="section-head">
           <div>
-            <p class="section-kicker">Consulting Directions</p>
-            <h2>3. 컨설팅 방향별 진단</h2>
+            <div class="section-kicker">06 QUALITY METRICS</div>
+            <h2>좋은 진료면담은 친절함보다 재현 가능한 품질 지표로 관리됩니다.</h2>
+            <p class="section-lead">
+              의료진 개인의 말솜씨에만 의존하지 않도록, 관찰 가능한 지표를 작게 만들고 매주 점검합니다.
+            </p>
           </div>
-          <p class="head-note">같은 진료 텍스트를 6개의 렌즈로 분석했습니다. 실제 보고서에서는 1, 2, 4, 5번을 묶은 통합형 코칭안이 가장 적합합니다.</p>
         </div>
 
-        <table class="direction-table">
-          <thead>
-            <tr>
-              <th>방향</th>
-              <th>핵심 질문</th>
-              <th>필요도</th>
-              <th>권장 포인트</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>환자 불안 완화와 신뢰 형성</td>
-              <td>환자가 불안을 초반에 표현하고 해소할 수 있었는가?</td>
-              <td><span class="priority-high">높음</span></td>
-              <td>공감 표현을 상담 말미에서 도입부로 이동</td>
-            </tr>
-            <tr>
-              <td>검사 결과 설명 명료화</td>
-              <td>영상·수치·추적 계획을 구분해 이해했는가?</td>
-              <td><span class="priority-high">높음</span></td>
-              <td>설명을 세 덩어리로 나누어 전달</td>
-            </tr>
-            <tr>
-              <td>공동의사결정</td>
-              <td>3개월 추적 계획을 환자와 합의했는가?</td>
-              <td><span class="priority-mid">중간</span></td>
-              <td>기다림에 대한 환자의 불안과 수용도 확인</td>
-            </tr>
-            <tr>
-              <td>Teach-back과 건강문해력</td>
-              <td>설명 후 환자가 자기 말로 계획을 되짚었는가?</td>
-              <td><span class="priority-high">높음</span></td>
-              <td>“제가 잘 설명했는지 확인하려고요” 문장 삽입</td>
-            </tr>
-            <tr>
-              <td>마무리·안전망·행동계획</td>
-              <td>언제 다시 오고 언제 연락해야 하는가가 명확한가?</td>
-              <td><span class="priority-high">높음</span></td>
-              <td>조기 연락 기준을 한 문장으로 안내</td>
-            </tr>
-            <tr>
-              <td>진료실 경험과 비언어 커뮤니케이션</td>
-              <td>모니터 중심 진료가 환자 연결감을 낮추지 않았는가?</td>
-              <td><span class="priority-low">중간</span></td>
-              <td>핵심 안심 메시지는 환자를 보며 전달</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>지표</th>
+                <th>관찰 기준</th>
+                <th>목표</th>
+                <th>측정 방식</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>초반 공감 반영</td>
+                <td>환자의 암 공포 또는 검사 불안을 의사가 직접 언급</td>
+                <td>상담 10건 중 8건 이상</td>
+                <td>녹취 전사 체크</td>
+              </tr>
+              <tr>
+                <td>3근거 설명</td>
+                <td>영상, 혈액수치, 시간 변화 중 2개 이상 연결 설명</td>
+                <td>상담 10건 중 9건 이상</td>
+                <td>상담 스크립트 리뷰</td>
+              </tr>
+              <tr>
+                <td>Teach-back</td>
+                <td>환자에게 오늘 결론 또는 다음 계획을 재진술하게 함</td>
+                <td>상담 10건 중 6건 이상에서 시작</td>
+                <td>자가 체크리스트</td>
+              </tr>
+              <tr>
+                <td>행동 기준 제시</td>
+                <td>재검 시점과 조기 내원 기준을 함께 안내</td>
+                <td>상담 10건 중 8건 이상</td>
+                <td>환자 안내문 대조</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="risk-grid">
+          <article class="risk-card">
+            <span class="risk-level orange">주의</span>
+            <strong>과잉 안심</strong>
+            <p>“괜찮다”만 반복하면 나중에 수치 변화가 있을 때 신뢰가 흔들릴 수 있습니다.</p>
+          </article>
+          <article class="risk-card">
+            <span class="risk-level">보완</span>
+            <strong>의학용어 밀도</strong>
+            <p>종양표지자, 기능성 낭종, 염증성 상승은 생활 언어와 함께 설명해야 합니다.</p>
+          </article>
+          <article class="risk-card">
+            <span class="risk-level green">강점</span>
+            <strong>불필요한 수술 회피</strong>
+            <p>현재 판단은 환자 안전과 과잉진료 방지의 균형을 잘 잡고 있습니다.</p>
+          </article>
+          <article class="risk-card">
+            <span class="risk-level">핵심</span>
+            <strong>마지막 30초</strong>
+            <p>면담의 체감 품질은 마지막 요약과 이해 확인에서 크게 결정됩니다.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <strong>Case 1 산부인과 진료면담 컨설팅 보고서</strong><br>
+        <span>환자 불안 완화, 검사 설명 구조화, 추적검사 순응도 향상을 위한 웹 보고서</span>
       </div>
-    </section>
-
-    <section id="priority">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Priority Routine</p>
-            <h2>4. 최우선 5단계 루틴</h2>
-          </div>
-          <p class="head-note">이 루틴은 진료 시간을 크게 늘리지 않고도 환자의 이해도와 신뢰도를 높이는 구조입니다.</p>
-        </div>
-
-        <div class="flow">
-          <div class="flow-step">
-            <span class="num">1</span>
-            <h4 class="flow-title">걱정 확인</h4>
-            <p>암 가능성, 수술 가능성, 검사 일정 중 가장 걱정되는 지점을 묻습니다.</p>
-          </div>
-          <div class="flow-step">
-            <span class="num">2</span>
-            <h4 class="flow-title">설명 예고</h4>
-            <p>“세 가지로 나누어 설명드릴게요”라고 먼저 구조를 제시합니다.</p>
-          </div>
-          <div class="flow-step">
-            <span class="num">3</span>
-            <h4 class="flow-title">분리 설명</h4>
-            <p>영상 소견, 종양표지자, 3개월 추적 계획을 나누어 말합니다.</p>
-          </div>
-          <div class="flow-step">
-            <span class="num">4</span>
-            <h4 class="flow-title">Teach-back</h4>
-            <p>환자가 자기 말로 오늘 계획을 되짚도록 요청합니다.</p>
-          </div>
-          <div class="flow-step">
-            <span class="num">5</span>
-            <h4 class="flow-title">안전망</h4>
-            <p>3개월 전 연락해야 하는 증상을 명확히 안내합니다.</p>
-          </div>
-        </div>
-
-        <div class="quote">
-          “이 진료의 컨설팅 방향은 설명량을 늘리는 것이 아니라, 설명의 순서와 확인 방식을 개선하는 것입니다.”
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Direction Detail</p>
-            <h2>5. 방향별 핵심 코칭</h2>
-          </div>
-          <p class="head-note">각 방향은 독립 보고서로도 사용할 수 있습니다. 아래는 실제 피드백 문장에 바로 들어갈 수 있는 압축 버전입니다.</p>
-        </div>
-
-        <div class="direction-section">
-          <span class="tag red">Direction 1</span>
-          <h3>환자 불안 완화와 신뢰 형성</h3>
-          <p>난소 혹과 종양표지자 상승은 환자에게 암 가능성이나 수술 가능성에 대한 강한 불안을 유발할 수 있습니다. 공감 표현은 말미보다 도입부에 배치하는 것이 좋습니다.</p>
-          <ul class="compact-list">
-            <li>추천 문장: “검사 결과에서 혹이나 수치 얘기를 들으셔서 많이 걱정되셨을 것 같아요.”</li>
-            <li>관찰 지표: 진료 시작 30초 안에 환자의 걱정을 묻는가?</li>
-          </ul>
-        </div>
-
-        <div class="direction-section">
-          <span class="tag blue">Direction 2</span>
-          <h3>검사 결과 설명 명료화</h3>
-          <p>영상 소견, 종양표지자, 3개월 추적 계획이 한 흐름으로 이어지면 환자가 핵심을 구분하기 어렵습니다. 설명 전 구조 예고가 필요합니다.</p>
-          <ul class="compact-list">
-            <li>추천 문장: “세 가지로 나누어 설명드릴게요. 첫째는 혹의 모양, 둘째는 피검사 수치, 셋째는 3개월 뒤 다시 보는 이유입니다.”</li>
-            <li>관찰 지표: 영상 소견과 혈액검사 수치를 분리해 설명하는가?</li>
-          </ul>
-        </div>
-
-        <div class="direction-section">
-          <span class="tag gold">Direction 3</span>
-          <h3>공동의사결정과 환자 선호 확인</h3>
-          <p>3개월 추적 계획은 명확하지만, 환자가 기다림을 어떻게 받아들이는지 확인하는 과정이 필요합니다.</p>
-          <ul class="compact-list">
-            <li>추천 문장: “3개월 추적이라는 계획이 환자분께는 어떻게 느껴지세요?”</li>
-            <li>관찰 지표: 환자가 계획에 동의하거나 우려를 표현할 기회가 있었는가?</li>
-          </ul>
-        </div>
-
-        <div class="direction-section">
-          <span class="tag lavender">Direction 4</span>
-          <h3>Teach-back과 건강문해력</h3>
-          <p>“궁금하신 거 있으세요?”는 환자가 무엇을 모르는지 알고 있을 때 효과적입니다. 복잡한 결과 상담에서는 환자가 자기 말로 되짚는 방식이 더 안전합니다.</p>
-          <ul class="compact-list">
-            <li>추천 문장: “제가 잘 설명했는지 확인하려고요. 오늘 계획을 환자분 말로 정리해보면 어떻게 이해되셨어요?”</li>
-            <li>관찰 지표: 환자가 3개월 추적 계획을 자기 말로 설명하는가?</li>
-          </ul>
-        </div>
-
-        <div class="direction-section">
-          <span class="tag teal">Direction 5</span>
-          <h3>마무리·안전망·행동계획</h3>
-          <p>추적관찰은 환자에게 기다림을 요구합니다. 기다리는 동안 어떤 증상이 있으면 연락해야 하는지 안내해야 불안과 위험을 모두 줄일 수 있습니다.</p>
-          <ul class="compact-list">
-            <li>추천 문장: “갑작스러운 심한 복통, 출혈 증가, 열, 복부 팽만이 생기면 예약일을 기다리지 말고 연락 주세요.”</li>
-            <li>관찰 지표: 조기 연락 기준이 구체적으로 제시되는가?</li>
-          </ul>
-        </div>
-
-        <div class="direction-section">
-          <span class="tag green">Direction 6</span>
-          <h3>진료실 경험과 비언어 커뮤니케이션</h3>
-          <p>자료와 모니터를 확인하는 모습은 전문성을 주지만, 핵심 안심 메시지는 환자를 보며 전달할 때 더 효과적입니다.</p>
-          <ul class="compact-list">
-            <li>추천 행동: “현재 자료만 보면 악성을 강하게 의심하는 소견은 낮아 보입니다”는 환자를 보고 천천히 전달합니다.</li>
-            <li>관찰 지표: 핵심 판단 문장을 말할 때 시선이 환자에게 향하는가?</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="scripts">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Recommended Scripts</p>
-            <h2>6. 현장 적용 스크립트</h2>
-          </div>
-          <p class="head-note">의료진의 기존 설명 스타일을 크게 바꾸지 않으면서 삽입할 수 있는 문장들입니다.</p>
-        </div>
-
-        <div class="two-col">
-          <div class="script-box">
-            <span class="script-label">도입</span>
-            <p class="script">“검사 결과에서 혹이나 수치 얘기를 들으셔서 많이 걱정되셨을 것 같아요. 오늘은 암 가능성, 수술 필요성, 다음 검사 계획을 차례로 정리해드릴게요.”</p>
-          </div>
-          <div class="script-box gold">
-            <span class="script-label">환자 걱정 확인</span>
-            <p class="script">“지금 제일 걱정되는 부분이 암 가능성인지, 수술 가능성인지, 3개월을 기다리는 부분인지 어떤 쪽이 가장 크세요?”</p>
-          </div>
-          <div class="script-box blue">
-            <span class="script-label">종양표지자 설명</span>
-            <p class="script">“이 수치 하나만으로 암을 진단하는 검사는 아닙니다. 생리 중이거나 염증이 있어도 올라갈 수 있어서 영상과 같이 봐야 합니다.”</p>
-          </div>
-          <div class="script-box red">
-            <span class="script-label">마무리</span>
-            <p class="script">“오늘 계획을 환자분 말로 한 번 정리해보면 어떻게 이해되셨어요? 그리고 갑작스러운 심한 복통이나 출혈 증가가 있으면 예약일을 기다리지 말고 연락 주세요.”</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="plan">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">30-Day Implementation</p>
-            <h2>7. 30일 실행 계획</h2>
-          </div>
-          <p class="head-note">현장 적용 가능성을 높이기 위해 주차별 연습 목표와 확인 지표를 단순하게 설계했습니다.</p>
-        </div>
-
-        <table class="direction-table">
-          <thead>
-            <tr>
-              <th>기간</th>
-              <th>실행 목표</th>
-              <th>구체 행동</th>
-              <th>확인 지표</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1주차</td>
-              <td>초반 걱정 확인</td>
-              <td>결과 상담 도입에 “가장 걱정되는 점” 질문 넣기</td>
-              <td>하루 3건 이상</td>
-            </tr>
-            <tr>
-              <td>2주차</td>
-              <td>설명 구조화</td>
-              <td>“세 가지로 나누어 설명드릴게요” 사용</td>
-              <td>복잡한 설명 전 1회</td>
-            </tr>
-            <tr>
-              <td>3주차</td>
-              <td>Teach-back 적용</td>
-              <td>환자가 자기 말로 오늘 계획을 말하게 하기</td>
-              <td>하루 3건 이상</td>
-            </tr>
-            <tr>
-              <td>4주차</td>
-              <td>안전망 안내</td>
-              <td>추적관찰 상담마다 조기 연락 기준 제시</td>
-              <td>추적 상담 50% 이상</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section id="conclusion">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Final Recommendation</p>
-            <h2>8. 최종 권고</h2>
-          </div>
-          <p class="head-note">보고서형 산출물로 제출할 때는 방향 1, 2, 4, 5를 묶은 통합형 구성이 가장 설득력 있습니다.</p>
-        </div>
-
-        <div class="final-note">
-          <p>이 의료진의 강점은 검사 맥락을 빠르게 파악하고, 수치 하나만으로 과잉진단하지 않으며, 추적 계획을 제시하는 능력입니다.</p>
-          <p>다음 단계의 성장은 환자의 불안을 초반에 확인하고, 설명을 환자가 따라올 수 있는 단위로 나누며, 마지막에 환자가 자기 말로 계획을 되짚게 하는 것입니다.</p>
-          <p>이 네 가지 변화는 진료 시간을 크게 늘리지 않으면서도 환자의 체감 이해도, 신뢰도, 만족도를 높일 수 있습니다.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <p><strong>Confidential coaching document.</strong> 본 문서는 자동전사 기반 텍스트 자료를 바탕으로 작성한 진료 커뮤니케이션 컨설팅 요약 보고서입니다. 의학적 판단의 정확성이나 진료 적절성을 판정하는 문서가 아닙니다.</p>
-      <p>Source: case1_consulting_report_multi_direction.md | Output: professional HTML summary report</p>
+      <button class="nav-button primary" data-jump="#top">맨 위로</button>
     </div>
   </footer>
+
+  <button class="back-top" data-jump="#top" aria-label="맨 위로 이동">↑</button>
+
+  <script>
+    const jumpButtons = document.querySelectorAll("[data-jump]");
+    jumpButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const target = document.querySelector(button.dataset.jump);
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    const modeButtons = document.querySelectorAll("[data-mode]");
+    const sections = document.querySelectorAll(".section[data-group]");
+    modeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const mode = button.dataset.mode;
+        modeButtons.forEach((item) => item.classList.toggle("is-active", item === button));
+        sections.forEach((section) => {
+          const visible = mode === "all" ||
+            (mode === "summary" && section.dataset.group === "summary") ||
+            (mode === "direction" && section.dataset.group === "direction") ||
+            (mode === "script" && section.dataset.group === "script") ||
+            (mode === "action" && section.dataset.group === "action");
+          section.classList.toggle("is-hidden", !visible);
+        });
+        const firstVisible = document.querySelector(".section:not(.is-hidden)");
+        if (firstVisible) firstVisible.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    const tabButtons = document.querySelectorAll("[data-tab]");
+    const tabPanels = document.querySelectorAll("[data-panel]");
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const target = button.dataset.tab;
+        tabButtons.forEach((item) => {
+          const active = item === button;
+          item.classList.toggle("is-active", active);
+          item.setAttribute("aria-selected", String(active));
+        });
+        tabPanels.forEach((panel) => {
+          panel.classList.toggle("is-active", panel.dataset.panel === target);
+        });
+      });
+    });
+
+    const copyButtons = document.querySelectorAll("[data-copy]");
+    copyButtons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        const card = button.closest(".script-card");
+        const text = card ? card.querySelector(".script-text").innerText.trim() : "";
+        try {
+          await navigator.clipboard.writeText(text);
+          button.textContent = "복사됨";
+          button.classList.add("is-copied");
+          setTimeout(() => {
+            button.textContent = "복사";
+            button.classList.remove("is-copied");
+          }, 1400);
+        } catch (error) {
+          button.textContent = "선택 후 복사";
+        }
+      });
+    });
+
+    const tocLinks = document.querySelectorAll(".toc-link");
+    const observedSections = document.querySelectorAll(".section");
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      tocLinks.forEach((link) => {
+        link.classList.toggle("is-active", link.getAttribute("href") === `#${visible.target.id}`);
+      });
+    }, { rootMargin: "-22% 0px -62% 0px", threshold: [0.12, 0.28, 0.5] });
+
+    observedSections.forEach((section) => observer.observe(section));
+  </script>
 </body>
 </html>
