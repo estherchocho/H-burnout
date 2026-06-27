@@ -1,17 +1,11 @@
 # H-burnout
 
-Static GitHub Pages site for the Case 1 consultation report.
+Streamlit starter repository.
 
-## Live report
-
-The report is published with GitHub Pages from the `main` branch root:
-
-https://estherchocho.github.io/H-burnout/
+The previously hosted static HTML report has been removed and GitHub Pages
+hosting should remain disabled.
 
 ## Files
 
-- `index.html`: Interactive Samsung-inspired consultation report.
-- `.nojekyll`: Keeps GitHub Pages from applying Jekyll processing.
-
-The previous Streamlit starter files are kept in the repository, but the hosted
-GitHub Pages entry point is `index.html`.
+- `streamlit_app.py`: Starter Streamlit app.
+- `requirements.txt`: Python dependency list.
