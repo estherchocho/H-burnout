@@ -1,19 +1,17 @@
-# 🎈 Blank app template
+# H-burnout
 
-A simple Streamlit app template for you to modify!
+Static GitHub Pages site for the Case 1 consultation report.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+## Live report
 
-### How to run it on your own machine
+After GitHub Pages deploys, the report should be available at:
 
-1. Install the requirements
+https://estherchocho.github.io/H-burnout/
 
-   ```
-   $ pip install -r requirements.txt
-   ```
+## Files
 
-2. Run the app
+- `index.html`: Professional HTML summary report.
+- `.github/workflows/pages.yml`: GitHub Pages deployment workflow.
 
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+The previous Streamlit starter files are kept in the repository, but the hosted
+GitHub Pages entry point is `index.html`.
